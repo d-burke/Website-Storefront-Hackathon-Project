@@ -12,7 +12,7 @@
 
 
 <center><span id="typing" style="color:blue"> type something </span></center>
-<p>key code number: <div id="keyNum"></div></p>
+<p>key code number: <span id="keyNum"></span></p>
 
 <div id="output"></div>
 
@@ -29,12 +29,15 @@
 <script type="text/javascript">
 
 
+
+
+
 //key capture 
 var keyLog = "";
 var inputHistory = "[";
 $(document).on('keypress', function (e) 
 {
-  $('div#keyNum').text(e.keyCode);
+  $('span#keyNum').text(e.keyCode);
   $('span#typing').css('color', 'black');
   keyLog += String.fromCharCode(e.keyCode);
   inputHistory += String.fromCharCode(e.keyCode);
@@ -52,7 +55,15 @@ $(document).on('keypress', function (e)
   	{
   		keyLog = keyLog.substring(0, keyLog.length-2)
 		$('span#typing').text(keyLog);
+		console.log(keyLog.length);
+  		if(keyLog.length === 0)
+		{
+			$('span#typing').text('type something');
+			$('span#typing').css('color', 'blue');
+		}
   	}
+
+
 });
 
 
@@ -95,7 +106,7 @@ var otherCommands = function(order)
 
 var godmode = function(doThis)
 {
-   if(doThis != undefined)
+   if(doThis.length > 4)
    {
    	alert('attempting to apply:  ' + doThis);
    	eval(doThis);
