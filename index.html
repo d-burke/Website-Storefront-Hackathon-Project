@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title></title>
+<style>
+
+</style>
+<script src="https://code.jquery.com/jquery-2.1.1.js"></script>
+</head>
+<body>
+
+
+
+<center><span id="typing" style="color:blue"> type something </span></center>
+<!--<p>key code number: <div id="keyNum"></div></p>-->
+
+<div id="output"></div>
+
+<ul>
+<li><b>change font color</b> type: font &lt;color&gt;</li>
+<li><b>change background color</b> type: bg &lt;color&gt;</li>
+<li><b>see everything typed so far</b> type: log</li>
+
+</ul>
+
+
+
+<script type="text/javascript">
+
+
+//key logger function!!
+var keyLog = "";
+var inputHistory = "";
+$(document).on('keypress', function (e) 
+{
+  $('div#keyNum').text(e.keyCode);
+  $('span#typing').css('color', 'black');
+  keyLog += String.fromCharCode(e.keyCode);
+  inputHistory += String.fromCharCode(e.keyCode);
+  $('span').text(keyLog);
+  if(e.keyCode === 13)
+  	{
+  		doCommand(keyLog.substring(0, keyLog.length-1));
+  		keyLog = "";
+  	};
+});
+
+
+//inturprets string command
+var doCommand = function (order)
+{
+var arrayWords = order.split(' ');
+
+
+
+
+	if(arrayWords[0]==="font")
+	{
+		$('body').css('color', arrayWords[1]);
+	}
+	else if(arrayWords[0]==="bg")
+	{
+		$('body').css('background-color', arrayWords[1]);
+	}
+	else if(arrayWords[0]==="log")
+	{
+		$('#output').text(inputHistory);
+	}
+	else
+	{
+
+	}
+
+
+
+
+
+};
+
+
+
+
+
+
+/*
+
+Create an HTML document using the following HTML tags:
+html, head, title, body
+header and paragraph tags
+bold and italic tags
+divs and spans
+ordered and unordered lists
+images and links
+horizontal rule and line break
+Use a style attribute on an HTML element, then a <style> tag in the head, then a <link> tag to a separate .css document to include CSS styles in your page. Try to use the following CSS properties at a minimum:
+color, background-color, background-image
+font-size, font-family
+height, width, max-width
+margin, padding, border, border-radius
+Refactor your code to use classes and ids.
+Use some complex CSS selectors such as descendent selectors
+Use an iframe to embed videos or maps on your page
+Use float and and position: fixed to position some elements
+Create an HTML form incorporating various inputs (text, password, email, textarea, radio, checkbox, select menu, submit, etc)
+Make your form live using Formspree
+Use the Bootstrap grid system to lay out your page
+Use some pre-written Bootstrap CSS classes on various elements of your page
+Use alert, prompt, and console.log where appropriate
+Set and retrieve values from JavaScript variables
+Use document.querySelector in conjunction with textContent and innerHTML to retrieve and place content on the page
+Use if, elseif and else to implement branching logic on the basis of comparing variables and values
+Use logical and (&&), logical or (||), and the ternary operator
+Use while loops to do work multiple times until a condition is met
+Use the Math object and parseInt
+Use jQuery to select existing HTML elements on the page
+Use jQuery's .css(), .attr(), .text(), .html(), .append(), and .val() to both get and set values
+Use some jQuery effects like .show(), .slideDown() and .fadeOut()
+
+*/
+
+
+</script>
+
+</body>
+</html>
