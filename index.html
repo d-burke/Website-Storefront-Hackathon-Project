@@ -12,7 +12,7 @@
 
 
 <center><span id="typing" style="color:blue"> type something </span></center>
-<!--<p>key code number: <div id="keyNum"></div></p>-->
+<p>key code number: <div id="keyNum"></div></p>
 
 <div id="output"></div>
 
@@ -20,6 +20,7 @@
 <li><b>change font color</b> type: font &lt;color&gt;</li>
 <li><b>change background color</b> type: bg &lt;color&gt;</li>
 <li><b>see everything typed so far</b> type: log</li>
+<li><b>backspace</b> type: \</li>
 
 </ul>
 
@@ -28,21 +29,30 @@
 <script type="text/javascript">
 
 
-//key logger function!!
+//key capture 
 var keyLog = "";
-var inputHistory = "";
+var inputHistory = "[";
 $(document).on('keypress', function (e) 
 {
   $('div#keyNum').text(e.keyCode);
   $('span#typing').css('color', 'black');
   keyLog += String.fromCharCode(e.keyCode);
   inputHistory += String.fromCharCode(e.keyCode);
-  $('span').text(keyLog);
+  $('span#typing').text(keyLog);
+//char 13 is return, for run command
   if(e.keyCode === 13)
   	{
   		doCommand(keyLog.substring(0, keyLog.length-1));
   		keyLog = "";
-  	};
+  		inputHistory += "] \\ [";
+		$('span#typing').append(" &#9989;"); 
+  	}
+//char 92 is \, for backspace
+  	else if(e.keyCode === 92)
+  	{
+  		keyLog = keyLog.substring(0, keyLog.length-2)
+		$('span#typing').text(keyLog);
+  	}
 });
 
 
@@ -50,9 +60,6 @@ $(document).on('keypress', function (e)
 var doCommand = function (order)
 {
 var arrayWords = order.split(' ');
-
-
-
 
 	if(arrayWords[0]==="font")
 	{
@@ -64,19 +71,37 @@ var arrayWords = order.split(' ');
 	}
 	else if(arrayWords[0]==="log")
 	{
-		$('#output').text(inputHistory);
+		$('#output').text(inputHistory + "]");
+	}
+	else if(arrayWords[0]==="god")
+	{
+		//add text inputbox
+		$('#output').html('<input type="text" name="textboxInput"  id="textboxInput" class="textboxInput" onclick="godmode(textboxInput.value)">');
 	}
 	else
 	{
-
+		otherCommands(arrayWords);
 	}
+};
 
-
-
-
+//more commands
+var otherCommands = function(order)
+{
 
 };
 
+
+
+
+var godmode = function(doThis)
+{
+   if(doThis != undefined)
+   {
+   	alert('attempting to apply:  ' + doThis);
+   	eval(doThis);
+   }
+   $('#output').html("");
+};
 
 
 
