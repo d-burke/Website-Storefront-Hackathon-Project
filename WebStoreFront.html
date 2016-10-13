@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Web Store">
+    <meta name="author" content="Dan Burke and Kevin Fundarek">
+    <title>RP WebStore</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/custom.css" rel="stylesheet">
+    <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
+  </head>
+  <body>
+    <!-- Fixed navbar -->
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" onclick="alert('HR Remote Prep WebStore Hackathon \n By: Dan Burke \& Kevin Fundarek');">RP WebStore</a>
+        </div>
+        <div class="row">
+
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li class="active"><a href="WebStoreFront.html" onclick="alert('You are already on the home page! \nToo lazy to click your own refreash button eh? \nNo no, don\'t strain youself, I\'ll do it for you.');">Home</a></li>
+            <li><a href="#about" onclick="alert('shhhh, don\'t worry about it.');">About</a></li>
+            <li><a href="#cart" onclick="clickCart()">Cart</a></li>          
+            <li><a href="#contact" data-toggle="modal" onclick="alert('No one wants to talk to you!');">Contact</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+      </div>
+    </div>
+<br><br><br>    
+    <div class="container">
+      <div class="search-bar">
+        <div class="col-lg-6">
+          <div class="input-group">
+          <input type="text" class="form-control" id="searchText" placeholder="Search for...">
+          <span class="input-group-btn">
+            <button class="btn btn-default" id="searchButton" type="button">Search</button>
+          </span>
+        </div><!-- /input-group -->
+      </div><!-- /.col-lg-6 -->
+    </div><!-- /.row -->
+
+<!-- Carousel Removed from here -->
+
+    <!-- Fixed footer -->
+    <div class="navbar navbar-inverse navbar-fixed-bottom" role="navigation">
+      <div class="container">
+        <div class="navbar-text pull-left">
+          <p>© 2016 RP WebStore</p>
+        </div>
+        <div class="navbar-text pull-right" onclick="alert('Support our viral marketing ploys on these social media sites!')">
+          <a href="#"><i class="fa fa-facebook-square fa-2x"></i></a>
+          <a href="#"><i class="fa fa-twitter fa-2x"></i></a>
+          <a href="#"><i class="fa fa-google-plus fa-2x"></i></a>
+        </div>
+      </div>
+    </div>
+    <br><br>
+
+
+<!-- testing formatting: -->
+<!--
+Top Selling
+<div class='row'>
+
+  <div class="col-sm-3" id="picCol">
+    <a href="#" class="productImage">
+          <img class="productImageControl" src='https://s-media-cache-ak0.pinimg.com/236x/27/a8/5d/27a85d53a7aa13fd5ee21c5b8d4b8405.jpg'>
+        </a>
+  </div>
+
+  <div class="col-sm-1" id="picCol"></div>
+
+  <div class="col-sm-3" id="picCol">
+    <a href="#" class="productImage">
+          <img class="productImageControl" src= 'https://henkedesign.files.wordpress.com/2012/11/usa-american-sunglasses.jpeg'>
+        </a>
+  </div>
+
+  <div class="col-sm-1" id="picCol"></div>
+
+  <div class="col-sm-3" id="picCol">
+    <a href="#" class="productImage">
+          <img class="productImageControl" src="https://img.buzzfeed.com/buzzfeed-static/static/2014-11/14/15/enhanced/webdr05/enhanced-28729-1415996770-18.jpg">
+        </a>
+  </div>
+
+</div> 
+
+ -->
+
+
+
+
+<!-- -->
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="http://maps.google.com/maps/api/js?sensor=true" > </script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/products.js"></script><!-- products -->
+    <script type="text/javascript">
+
+
+
+var productsToDisplay = []; 
+
+//sets a number random products to productsToDisplay
+var randomProducts = function(numberOfProducts){
+  productsToDisplay = [];
+  for (var i = 0; i < numberOfProducts; i++) {
+    productsToDisplay.push(products[Math.floor((Math.random() * products.length))]);
+  }
+  return productsToDisplay;
+};
+
+randomProducts(3);
+
+
+
+//removes repeat spaces in string, and returns a Title Case array
+var stringToTitleCaseArray = function (str){
+  var str1 = "";
+  str = str.toLowerCase();
+  for (var i = 0; i < str.length; i++) {
+    while(str[i]===" " && str[i + 1] === " ") {
+      i++;
+    }    
+    str1 += str[i];
+  }
+  var titleCaseArray = str1.split(" ");
+  for (var i = 0; i < titleCaseArray.length; i++) {
+    titleCaseArray[i] = titleCaseArray[i].charAt(0).toUpperCase() + titleCaseArray[i].slice(1).toLowerCase();
+  };
+  return titleCaseArray;
+};
+
+
+
+
+//returns array of objects from products whos name contain words from the search bar input feild 
+var searchFunction = function(){
+  var arraySearchResults = [];
+  var textInput = document.getElementById("searchText").value;
+//if search bar input less than 2 character then 3 random products
+  if(textInput.length < 2){randomProducts(3);displayOutput();return productsToDisplay;}
+
+  var inputArray = stringToTitleCaseArray(textInput);
+  //alert("search button works, input: " + inputArray);
+  for (var i = 0; i < inputArray.length; i++) {
+    for (var ii = 0; ii < products.length; ii++) {
+      if(products[ii].name.includes(inputArray[i])===true){
+        //console.log("found " + inputArray[i] + " in " + products[ii].name);
+        arraySearchResults.push(products[ii]);
+      }
+    }
+  }
+//if search no results, then 3 random products
+  if(arraySearchResults.length === 0){randomProducts(3);displayOutput();return productsToDisplay;}
+  //console.log(arraySearchResults);
+  //console.log("arraySearchResults is: " + arraySearchResults + " / arraySearchResults is: " + arraySearchResults.length);
+  productsToDisplay=arraySearchResults;
+  displayOutput();
+  return arraySearchResults;  
+};
+
+
+
+
+//listener for search button activates searchFunction
+//$("#searchButton").click(searchFunction); //jQuery version
+document.getElementById("searchButton").addEventListener("click", searchFunction);
+
+//add option to press enter
+//document.getElementsByClassName/*querySelector*/("input-group").addEventListener("keypress", ifPressReturn);
+/*
+$(".input-group").keypress(ifPressReturn);
+
+var ifPressReturn = function(e) {
+  if(e.keyCode == 13) { 
+    searchFunction();
+  }
+};
+*/
+/*
+$(document).keypress(function(e) {
+  if(e.which == 13) {
+    // enter pressed
+  }
+});
+*/
+
+
+//cart functions
+//window.sessionStorage... tab life
+//cookie longer life
+var cartCookie = "Items in your cart: \n";
+
+//save string to cartCookie
+var saveToCookie = function(str){
+    cartCookie += str + "\n";
+//document.cookie += "item=" + str;
+    alert(str + " has been added to cart");
+};
+
+//displays current cartCookie
+var clickCart = function(){
+  if(cartCookie === "Items in your cart: \n") {
+    alert('Your cart is empty, you cheap bastard!');
+  }
+  else
+  {
+      alert(cartCookie);
+//              alert(document.cookie);
+
+  }
+};
+
+
+
+
+var generateProductContainerContent = function(){
+  var htmlString = "";
+  for(i=0; i<productsToDisplay.length; i++){
+    htmlString += "<div class='row'><div class='col-sm-4' id='picCol'><a href='#' class='productImage'><img class='productImageControl' src='"
+    + productsToDisplay[i].picture
+    + "'></a></div>"
+    + "<div class='col-sm-8' id='txtCol'><h2>"
+    + productsToDisplay[i].name
+    + "<br></h2><p>";
+
+    if(productsToDisplay[i].sellingPoints.length === 0){
+      htmlString += "(details not available)";
+    }
+    else
+    {
+      htmlString += "<ul>";
+      for (var j = 0; j < productsToDisplay[i]['sellingPoints'].length; j++) {
+        htmlString += "<li>";
+        htmlString += productsToDisplay[i].sellingPoints[j];
+        htmlString += "</li>";
+      }
+      htmlString += "</ul>";
+    };
+    htmlString += "<br><br><button onclick=\"saveToCookie('" + productsToDisplay[i].name + "')\">Add To Cart</button>";
+    htmlString += "</p></div></div><br><br><hr><br>";
+  }
+  return htmlString;
+};
+
+
+
+
+/*
+
+    htmlString += "<br><br><button onclick='cartCookie += productsToDisplay[i].name + \"\n\";'>Add To Cart</button>";
+
+
+<button onclick="saveCookie()">save a cookie</button>
+<script>
+var cartCookie = "Items in your cart: \n";
+  var saveCookie = function(){
+    cartCookie += "1";
+  };
+
+
+
+  document.cookies = "";
+      htmlString += "<br><br><button onclick='document.cookies +=" + productsToDisplay[i].name; + ">Add To Cart</button>";
+*/
+
+
+
+
+
+//displays products | formatting could be improved
+var displayOutput = function(){
+  $("#productContainer").remove();
+  $("body").append('<div class="container" id="productContainer">Products:</div>')
+
+  $('#productContainer').append(generateProductContainerContent());
+
+};
+
+
+displayOutput();
+
+
+
+/*
+
+
+
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+To Do List:
+//improve search functioning maybe dropdown menu of catagories
+
+
+//append appropriate products to page
+//improve format product information display (relatively)
+
+//make the carousel works
+//maybe replace with 3-4 thumbnail top sellers 
+
+//create a cart that tracks the added items (maybe cookies)
+//add a "add to cart" button below/next to the item
+//add a listener so that the cart is updated when the button is pressed
+//add a cart checkout page
+
+//add about page
+
+//add contact page
+
+
+*/
+
+
+
+
+
+/************
+//Original Carousel HTML code:
+
+  <div class="container">
+    <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+      <!-- Indicators -->
+      <ol class="carousel-indicators">
+        <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+        <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+        <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+      </ol>
+     
+      <!-- Wrapper for slides -->
+      <div class="carousel-inner">
+        <div class="item active">
+          <img src="http://placehold.it/1200x315" alt="...">
+          <div class="carousel-caption">
+              <h3>Caption Text</h3>
+          </div>
+        </div>
+        <div class="item">
+          <img src="http://placehold.it/1200x315" alt="...">
+          <div class="carousel-caption">
+              <h3>Caption Text</h3>
+          </div>
+        </div>
+        <div class="item">
+          <img src="http://placehold.it/1200x315" alt="...">
+          <div class="carousel-caption">
+              <h3>Caption Text</h3>
+          </div>
+        </div>
+      </div>
+     
+      <!-- Controls -->
+      <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left"></span>
+      </a>
+      <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right"></span>
+      </a>
+    </div> <!-- Carousel -->  
+ 
+  <div class="container">
+    <div class="product" id="product_1"></div>
+  </div>      
+
+
+*************/
+
+//attempt to interact with carousel javascript code:
+
+//trying to figure out how to interact with the carousel
+//$(".item active").click(carouselFunction);
+/*
+//document.getElementByClass("carousel-example-generic").addEventListener("click", carouselFunction);
+*/
+/*
+var carouselFunction = function(){
+  alert("carousel works");
+};
+*/
+
+/*
+"item active"
+id="carousel-example-generic"
+id="carouselSlide1" etc.
+*/
+
+    </script>
+  </body>
+</html>
