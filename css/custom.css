@@ -1,0 +1,240 @@
+.navbar-text > a {
+	color: inherit;
+	text-decoration: none;
+}
+
+body {
+	padding-top: 70px;
+	padding-bottom: 30px;
+	background-color: #FFFBD0;
+	color: #331f00;
+}
+
+p {
+	font-family: 'Open Sans', sans-serif;
+	text-indent: 50px;
+	color: #331f00;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	font-family: 'Oswald', sans-serif;
+}
+
+hr {
+	border:0;
+	height: 4px;
+	background: #331f00;
+	background-image: linear-gradient(to right, #FFFBD0, #CC3333, #FFFBD0);
+}
+
+div {
+
+
+}
+
+.floatLeft {
+	float:left;
+	overflow: hidden;
+	max-width:29%;
+}
+.floatRight {
+ float:right;
+	overflow: hidden;
+	max-width: 70%;
+
+}
+
+.productImageControl {
+	object-position: 100% 0%;
+	max-height: 425px;
+	min-height: 425px;
+	object-fit: contain;
+	overflow: auto;
+	max-width: 100%;
+	max-height: 100%;
+}
+
+.productImage {
+	float:right;
+}
+
+.input-group {
+left: 50%;
+}
+
+.navbar-fixed-bottom {
+	background: #ffffff;
+	background: -moz-linear-gradient(top, #fffbd0 0%, #ff9900 100%);
+	background: -webkit-gradient(left top, left bottom, color-stop(0%, #fffbd0), color-stop(100%, #ff9900));
+	background: -webkit-linear-gradient(top, #fffbd0 0%, #ff9900 100%);
+	background: -o-linear-gradient(top, #fffbd0 0%, #ff9900 100%);
+	background: -ms-linear-gradient(top, #fffbd0 0%, #ff9900 100%);
+	background: linear-gradient(to bottom, #fffbd0 0%, #ff9900 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fffbd0', endColorstr='#ff9900', GradientType=0 );
+}
+
+.navbar-fixed-top {
+
+	bottom: 91%;
+}
+
+#Home_Blurb_Header {
+	text-align: center;
+}
+
+#Home-Intro-blerb {
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
+
+.search-bar{
+	padding-bottom: 30px;
+}
+
+.row{
+	padding-bottom: 20px;
+}
+
+.navbar-default {
+	background-color: #ff9900;
+	border-color: #000000;
+	color: #FFFFFF;
+
+	background: #f16f5c;
+background: -moz-linear-gradient(top, #f16f5c 0%, #f6290c 0%, #ff9900 0%, #fffbd0 100%);
+background: -webkit-gradient(left top, left bottom, color-stop(0%, #f16f5c), color-stop(0%, #f6290c), color-stop(0%, #ff9900), color-stop(100%, #fffbd0));
+background: -webkit-linear-gradient(top, #f16f5c 0%, #f6290c 0%, #ff9900 0%, #fffbd0 100%);
+background: -o-linear-gradient(top, #f16f5c 0%, #f6290c 0%, #ff9900 0%, #fffbd0 100%);
+background: -ms-linear-gradient(top, #f16f5c 0%, #f6290c 0%, #ff9900 0%, #fffbd0 100%);
+background: linear-gradient(to bottom, #f16f5c 0%, #f6290c 0%, #ff9900 0%, #fffbd0 100%);
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f16f5c', endColorstr='#fffbd0', GradientType=0 );
+}
+
+.navbar-default .navbar-brand {
+	color: #331f00;
+}
+
+.navbar-default .navbar-brand:hover,
+.navbar-default .navbar-brand:focus {
+	color: #646867;
+	background-color: transparent;
+}
+
+.navbar-default .navbar-nav > li > a {
+	color: #331f00;
+}
+
+.navbar-default .navbar-nav > .active > a,
+.navbar-default .navbar-nav > .active > a:hover,
+.navbar-default .navbar-nav > .active > a:focus {
+	color: #FFFFFF;
+	background-color: #cc3333;
+}
+
+.navbar-default .navbar-nav > li > a:hover,
+.navbar-default .navbar-nav > li > a:focus {
+	color: #646867;
+	background-color: transparent;
+}
+
+.navbar-default .navbar-nav > .open > a,
+.navbar-default .navbar-nav > .open > a:hover,
+.navbar-default .navbar-nav > .open > a:focus {
+	background-color: #1A242F;
+	color: #FFFFFF;
+}
+
+
+.btn-primary {
+	background-color: #2C3E50;
+	border-color: #2C3E50;
+	color: #FFFFFF;
+}
+
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active,
+.btn-primary.active,
+.open .dropdown-toggle.btn-primary {
+	color: #FFFFFF;
+	background-color: #1E2A36;
+	border-color: #161F29; 
+}
+
+.btn-success {
+	background-color: #646867;
+	border-color: #646867;
+	color: #FFFFFF;
+}
+
+.btn-success:hover,
+.btn-success:focus,
+.btn-success:active,
+.btn-success.active,
+.open .dropdown-toggle.btn-success {
+	color: #FFFFFF;
+	background-color: #13987E; /* this is the green*/
+	border-color: #13987E; 
+}
+
+.btn-default {
+	background-color: #95A5A6;
+	border-color: #95A5A6;
+	color: #FFFFFF;
+}
+
+.btn-default:hover,
+.btn-default:focus,
+.btn-default:active,
+.btn-default.active,
+.open .dropdown-toggle.btn-success {
+	color: #FFFFFF;
+	background-color: #7F9293;
+	border-color: #74898A;
+}
+
+
+.home-thumb img:hover {
+	transform: scale(1.1);
+}
+
+.thumbnail img {
+	transition: all 0.3s ease 0s;
+	width: 100%;
+}
+
+.thumbnail {
+	overflow: hidden;
+}
+
+.bg-grey {
+	background-color: #f9f9f9;
+}
+
+.carousel {
+	padding-top: 20px;
+	padding-bottom: 20px;
+}
+
+.carousel-inner {
+}
+
+#location {
+    margin-bottom: 30px;
+}
+
+#map {
+    width: 800px;
+    height: 400px;
+}
+
+
+
+/*COLOR PALET
+The Blue in the IoT Pic :HEX #147dbd, RGB(20,125,189), CMYK(89,34,0,26);
+The Gray in the IoT Pic :#646867;
+
+*/
+
+
